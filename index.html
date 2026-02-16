@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Pokelok Key System</title>
+
+<style>
+body{
+    background:#0b0b0b;
+    font-family:Arial;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    color:white;
+}
+
+.card{
+    width:380px;
+    background:#1a1a1a;
+    border-radius:12px;
+    padding:25px;
+    box-shadow:0 0 25px #000;
+    text-align:center;
+}
+
+.avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:url("https://i.imgur.com/YOURIMAGE.png");
+    background-size:cover;
+    margin:auto;
+}
+
+h2{
+    margin-top:10px;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#2b2b2b;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.btn:hover{
+    background:#3a3a3a;
+}
+
+.continue{
+    background:#00aa00;
+}
+
+.keybox{
+    margin-top:15px;
+    background:#111;
+    padding:10px;
+    border-radius:6px;
+    word-break:break-all;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="avatar"></div>
+<h2>Pokelok</h2>
+
+<p>Like & Subs Before Continue</p>
+
+<button class="btn" onclick="window.open('https://youtube.com')">Subscribe</button>
+<button class="btn" onclick="window.open('https://youtube.com')">Like Video</button>
+
+<button class="btn continue" onclick="generateKey()">Continue</button>
+
+<div class="keybox" id="keyBox">Sua key aparecerá aqui</div>
+
+</div>
+
+<script>
+
+function randomKey(){
+    return 'PLK-' + Math.random().toString(36).substr(2,5).toUpperCase() + "-" + 
+           Math.random().toString(36).substr(2,5).toUpperCase();
+}
+
+function generateKey(){
+    let key = randomKey();
+    document.getElementById("keyBox").innerText = key;
+
+    fetch("save.php?key=" + key);
+}
+
+</script>
+
+</body>
+</html>
